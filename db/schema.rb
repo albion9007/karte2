@@ -10,7 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_234853) do
+ActiveRecord::Schema.define(version: 2020_09_03_003707) do
+
+  create_table "kartes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "karte_id"
+    t.string "patient_name", null: false
+    t.text "birth_date", null: false
+    t.string "tel", null: false
+    t.string "post_num", default: "", null: false
+    t.integer "prefecture_id", null: false
+    t.string "city", default: ""
+    t.string "house_num", default: ""
+    t.string "apart_name", default: ""
+    t.string "key_person", null: false
+    t.string "kp_tel", null: false
+    t.string "main_disease", null: false
+    t.string "sub_disease", null: false
+    t.string "main_doctor", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
