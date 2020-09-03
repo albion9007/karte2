@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_003707) do
+ActiveRecord::Schema.define(version: 2020_09_03_150002) do
+
+  create_table "karte_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "karte_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["karte_id"], name: "index_karte_users_on_karte_id"
+    t.index ["user_id"], name: "index_karte_users_on_user_id"
+  end
 
   create_table "kartes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "karte_id"
@@ -44,4 +53,6 @@ ActiveRecord::Schema.define(version: 2020_09_03_003707) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "karte_users", "kartes"
+  add_foreign_key "karte_users", "users"
 end
