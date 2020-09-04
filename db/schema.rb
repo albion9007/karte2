@@ -43,19 +43,19 @@ ActiveRecord::Schema.define(version: 2020_09_04_021046) do
   end
 
   create_table "kartes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.integer "karte_id"
+    t.integer "karte_id", null: false
     t.string "patient_name", null: false
-    t.text "birth_date", null: false
-    t.string "tel", null: false
-    t.string "post_num", default: "", null: false
+    t.text "birth_date"
+    t.string "tel"
+    t.string "post_num", default: ""
     t.integer "prefecture_id", null: false
     t.string "city", default: ""
     t.string "house_num", default: ""
     t.string "apart_name", default: ""
-    t.string "key_person", null: false
-    t.string "kp_tel", null: false
+    t.string "key_person"
+    t.string "kp_tel"
     t.string "main_disease", null: false
-    t.string "sub_disease", null: false
+    t.string "sub_disease"
     t.string "main_doctor", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
