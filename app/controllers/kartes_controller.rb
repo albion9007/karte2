@@ -13,6 +13,10 @@ class KartesController < ApplicationController
     end
   end
 
+  # def index
+  #   @kartes = Karte
+  # end
+
   private
 
   def karte_params

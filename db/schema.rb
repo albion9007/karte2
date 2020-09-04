@@ -57,8 +57,10 @@ ActiveRecord::Schema.define(version: 2020_09_04_021046) do
     t.string "main_disease", null: false
     t.string "sub_disease"
     t.string "main_doctor", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_kartes_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -77,4 +79,5 @@ ActiveRecord::Schema.define(version: 2020_09_04_021046) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "karte_users", "kartes"
   add_foreign_key "karte_users", "users"
+  add_foreign_key "kartes", "users"
 end

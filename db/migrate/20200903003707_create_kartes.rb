@@ -15,6 +15,7 @@ class CreateKartes < ActiveRecord::Migration[6.0]
       t.string    :main_disease,   null: false
       t.string    :sub_disease,   null: true
       t.string    :main_doctor,   null: false
+      t.references :user, foreign_key: true
       t.timestamps
     end
   end
