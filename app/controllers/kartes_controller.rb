@@ -16,7 +16,7 @@ class KartesController < ApplicationController
   private
 
   def karte_params
-    params.require(:karte).permit(:post_num, :prefecture_id, :city,
-                                  :house_num, :apart_name, :tel).merge(user_id: current_user.id)
+    params.require(:karte).permit(:karte_id, :image, :patient_name, :birth_date, :post_num, :prefecture_id, :city,
+                                  :house_num, :apart_name, :tel, :key_person, :kp_tel, :main_disease, :sub_disease, :main_doctor).merge(user_id: current_user.id)
   end
 end
