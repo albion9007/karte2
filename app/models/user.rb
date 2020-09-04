@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   has_many :karte_users
   has_many :kartes, through: :karte_users
-  
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
