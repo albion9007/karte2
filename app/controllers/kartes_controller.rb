@@ -1,14 +1,21 @@
-class PatientsController < ApplicationController
-
+class KartesController < ApplicationController
   def new
     @karte = Karte.new
   end
 
-
-
-  def index
-    @kartes = Karte.includes(:user).order("created_at DESC")
+  def create
+    @karte = Karte.new(karte_params)
+    if @karte.valid?
+      @karte.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
+
+  # def index
+  #   @kartes = Karte
+  # end
 
   private
 

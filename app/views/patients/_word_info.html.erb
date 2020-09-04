@@ -6,20 +6,31 @@
   </div>
   <div class="right-header">
     <div class="header-button">
-      <a href="#">新規入院</a>
+      <% if user_signed_in? %>
+        <%= link_to "新規入院", new_patient_karte_path, class: "header-button" %>
+      <% else %>
+        <%= link_to "新規入院", new_session_path(resource_name), class: "header-button" %>
+      <% end %>
     </div>
   </div>
 </div>
 
+<%# <病室一覧> %>
 <div class="word-patients">
   <div class="left-patients">
     <div class="room">
       <div class="more">
         <a href="#">301</a>
+        <%# <病室内患者様一覧> %>
         <ul class="more_list">
+        <% binding.pry %>
+        <% @kartes.each do |karte| %>
           <li>
-            <%= link_to '鈴木福 20歳 肺炎 既：虫垂炎' %>
+          <%= link_to karte_path(karte.id) do %>
+            <%= karte.karte_name %>
+          <% end %>
           </li>
+          <% end  %>
           <li>
             <%= link_to '太田聡介 74歳 肺炎 既：胃癌手術' %>
           </li>

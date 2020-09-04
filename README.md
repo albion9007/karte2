@@ -114,25 +114,31 @@ PASS:0416
 <!-- アソシエーション -->
   <!-- users テーブル -->
 ### Association
-- has_many :patients
+- has_many :karte_users
+- has_many :kartes, through: :karte_users
 - has_one :to do lists
 
-  <!-- patients テーブル -->
+  <!-- kartes テーブル -->
 ### Association
-- has_many :users
+- has_many :karte_users
+- has_many :users, through: :karte_users
 - belongs_to :to do lists
 - has_many :treatments
 - belongs_to :monitors
 
+<!-- karte_usersテーブル -->
+- belongs_to :karte
+  belongs_to :user
+
   <!-- monitors テーブル -->
 ### Association
-- has_many :patients
+- has_one :kartes
 
   <!-- treatments テーブル -->
 ### Association
-- belongs_to :patients
+- belongs_to :kartes
 
   <!-- to do lists テーブル -->
 ### Association
-- belongs_to :patients
+- has_many :kartes
 - belongs_to : users

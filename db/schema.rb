@@ -10,7 +10,58 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_01_234853) do
+ActiveRecord::Schema.define(version: 2020_09_04_021046) do
+
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "karte_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "karte_id"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["karte_id"], name: "index_karte_users_on_karte_id"
+    t.index ["user_id"], name: "index_karte_users_on_user_id"
+  end
+
+  create_table "kartes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "karte_id", null: false
+    t.string "patient_name", null: false
+    t.text "birth_date"
+    t.string "tel"
+    t.string "post_num", default: ""
+    t.integer "prefecture_id", null: false
+    t.string "city", default: ""
+    t.string "house_num", default: ""
+    t.string "apart_name", default: ""
+    t.string "key_person"
+    t.string "kp_tel"
+    t.string "main_disease", null: false
+    t.string "sub_disease"
+    t.string "main_doctor", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_kartes_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
@@ -25,4 +76,8 @@ ActiveRecord::Schema.define(version: 2020_09_01_234853) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "karte_users", "kartes"
+  add_foreign_key "karte_users", "users"
+  add_foreign_key "kartes", "users"
 end
